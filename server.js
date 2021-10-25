@@ -28,6 +28,17 @@ app.get('/todos', (req, res) => {
     res.json(todos)
 })
 
+// POST
+app.post('/todos', (req, res) => {
+    let newItem = {
+        id: todos.length + 1,
+        title: req.body.title,
+        complete: false
+    }
+
+    todos.push(newItem)
+    res.json(newItem)
+})
 
 
 app.listen(PORT, () => {

@@ -1,13 +1,35 @@
 (function (window) {
     const todoList = document.querySelector('#todoList')
     const userItemInput = document.querySelector('#newItemInput')
-    const addTodoBtn = document.querySelector('#addItemBtn')
+    const addItemBtn = document.querySelector('#addItemBtn')
 
+    // Click event listener for adding new todo item
+    addItemBtn.addEventListener('click', (event) => {
+        let itemToSend = JSON.stringify({
+            title: userItemInput.value
+        })
+
+        fetch('/todos', {
+            method: 'POST',
+            body: itemToSend,
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8'
+            }
+        })
+        .then(res => res.json())
+        .then((data) => {
+            displayTodos(data)
+        })
+
+        userItemInput.value = ""
+    })
+
+    // Fetches and displays todos
     fetch('/todos')
     .then(res => res.json())
     .then(data => {
         console.log(data)
-        data.forEach(todo => displayTodos(todo))
+        data.forEach((todo) => displayTodos(todo))
     })
 
     // Function that displays list of todos

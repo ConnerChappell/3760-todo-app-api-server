@@ -40,6 +40,13 @@ app.post('/todos', (req, res) => {
     res.json(newItem)
 })
 
+// DELETE
+// app.delete('/todos/:todoId', (req, res) => {
+//     const { todoId } = req.params
+//     const index = todos.findIndex((obj) => obj.id === todoId)
+//     todos.splice(index, 1)
+// })
+
 
 app.listen(PORT, () => {
     console.log(`Server is happy and running on http://localhost:${PORT}`)

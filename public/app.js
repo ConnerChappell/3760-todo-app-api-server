@@ -24,6 +24,21 @@
         userItemInput.value = ""
     })
 
+    // Click event listener for deleting a todo item
+    // todoList.addEventListener('click', (event) => {
+    //     let todoId = event.target.id
+
+    //     if (event.target.matches('.delete-item-btn')) {
+    //         fetch(`/todos/${todoId}`, {
+    //             method: 'DELETE',
+    //             headers: {
+    //                 'Content-type': 'application/json; charset=UTF-8'
+    //             }
+    //         })
+    //         .then((res) => res.json())
+    //     }
+    // })
+
     // Fetches and displays todos
     fetch('/todos')
     .then(res => res.json())
@@ -36,6 +51,7 @@
     const displayTodos = function (todo) {
         // Creates li container for each todo item
         const itemDiv = document.createElement('li')
+        itemDiv.setAttribute('id', 'itemDivId')
         itemDiv.classList.add('item-div')
 
         // Creates input for checkmark and appends to item-div
@@ -59,7 +75,7 @@
 
         // Creates edit button and appends to item-div
         const itemEditBtn = document.createElement('button')
-        itemEditBtn.innerHTML = '<i class="fas fa-edit"></i>'
+        itemEditBtn.textContent = 'Edit'
         itemEditBtn.classList.add('edit-item-btn', 'btn', 'btn-light')
         itemDiv.appendChild(itemEditBtn)
 
@@ -70,7 +86,7 @@
 
         // Creates delete button and appends to item-div
         const itemDeleteBtn = document.createElement('button')
-        itemDeleteBtn.innerHTML = '<i class="fas fa-trash"></i>'
+        itemDeleteBtn.textContent = 'Delete'
         itemDeleteBtn.classList.add('delete-item-btn', 'btn', 'btn-danger')
         itemDiv.appendChild(itemDeleteBtn)
 

@@ -25,19 +25,20 @@
     })
 
     // Click event listener for deleting a todo item
-    // todoList.addEventListener('click', (event) => {
-    //     let todoId = event.target.id
+    todoList.addEventListener('click', (event) => {
+        let todoId = event.target.parentElement.id
 
-    //     if (event.target.matches('.delete-item-btn')) {
-    //         fetch(`/todos/${todoId}`, {
-    //             method: 'DELETE',
-    //             headers: {
-    //                 'Content-type': 'application/json; charset=UTF-8'
-    //             }
-    //         })
-    //         .then((res) => res.json())
-    //     }
-    // })
+        if (event.target.matches('.delete-item-btn')) {
+            fetch(`/todos/${todoId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8'
+                }
+            })
+            .then((res) => res.json())
+            .then(() => location.reload())
+        }
+    })
 
     // Fetches and displays todos
     fetch('/todos')

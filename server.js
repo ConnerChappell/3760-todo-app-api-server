@@ -41,11 +41,11 @@ app.post('/todos', (req, res) => {
 })
 
 // DELETE
-// app.delete('/todos/:todoId', (req, res) => {
-//     const { todoId } = req.params
-//     const index = todos.findIndex((obj) => obj.id === todoId)
-//     todos.splice(index, 1)
-// })
+app.delete('/todos/:todoId', (req, res) => {
+    const { todoId } = req.params
+    todos.splice(todoId - 1, 1)
+    res.send(todos)
+})
 
 
 app.listen(PORT, () => {
